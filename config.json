@@ -1,0 +1,33 @@
+{
+    "name": "Filipe Lemos (FilipeRobot)",
+    "job": "Estudante de Programação",
+    "github": "FilipeRobot",
+    "playlists": {
+        "jogos": [
+            {
+                "title": "Frostpunk - Neve e Steak tartare",
+                "url": "https://www.youtube.com/watch?v=QsqatJxAUtk",
+                "thumb": "https://img.youtube.com/vi/QsqatJxAUtk/hqdefault.jpg"
+            },
+            {
+                "title": "Cities: Skylines - EPCOTAB, o futuro de Saint Laurrent",
+                "url": "https://www.youtube.com/watch?v=zybKHMgLCWU",
+                "thumb": "https://img.youtube.com/vi/zybKHMgLCWU/hqdefault.jpg"
+            }
+        ],
+        "front-end": [
+            {
+                "title": "Jogo com JavaScript #01: Criando um Flappy Bird do ZERO!!!",
+                "url": "https://youtube.com/watch?v=jOAU81jdi-c",
+                "thumb": "https://img.youtube.com/vi/jOAU81jdi-c/hqdefault.jpg"
+            }
+        ],
+        "back-end": [
+            {
+                "title": "Node JS: Construindo CRUDs com file system focando em serialização e JSON",
+                "url": "https://www.youtube.com/watch?v=dvd3pNYh7So",
+                "thumb": "https://img.youtube.com/vi/dvd3pNYh7So/hqdefault.jpg"
+            }
+        ]
+    }
+}
