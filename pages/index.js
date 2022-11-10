@@ -1,3 +1,4 @@
+import React from "react";
 import config from "../config.json";
 import styled from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
@@ -8,6 +9,8 @@ function HomePage() {
     const estilosDaHomePage = {
         //backgroundColor: "red"
     };
+
+    const [valorDoFiltro, setValorDoFiltro] = React.useState("");
 
     return (
         <>
@@ -20,9 +23,18 @@ function HomePage() {
                     // backgroundColor: "red",
                 }}
             >
-                <Menu />
+                {/* Prop Drilling */}
+                <Menu
+                    valorDoFiltro={valorDoFiltro}
+                    setValorDoFiltro={setValorDoFiltro}
+                />
                 <Header />
-                <TimeLine playlists={config.playlists}>Conteúdo</TimeLine>
+                <TimeLine
+                    searchValue={valorDoFiltro}
+                    playlists={config.playlists}
+                >
+                    Conteúdo
+                </TimeLine>
             </div>
         </>
     );
@@ -51,14 +63,23 @@ const StyledHeader = styled.div`
         object-fit: cover;
     }
 `;
+const StyledBanner = styled.div`
+    margin-top: 50px;
+    background-color: blue;
+    background-image: url(${({ bg }) => bg});
+    /* background-image: url(${config.bg}); */
+    height: 230px;
+    background-size: cover;
+`
 function Header() {
     return (
         <StyledHeader>
-            <img
+            {/* <img
                 className="banner"
                 src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=fill&w=870&q=80"
                 alt="Banner"
-            />
+            /> */}
+            <StyledBanner bg={config.bg} />
             <section className="user-info">
                 <img
                     src={`https://github.com/${config.github}.png`}
@@ -73,7 +94,7 @@ function Header() {
     );
 }
 
-function TimeLine(props) {
+function TimeLine({ searchValue, ...props }) {
     const playlistsNames = Object.keys(props.playlists);
     // Statement "for"							| Pesquisar melhor
     // Retorno por expressão "forEach" ou "map" | esse assunto
@@ -83,18 +104,28 @@ function TimeLine(props) {
                 //map para pegar a lista como um todo
                 const videos = props.playlists[playlistsName];
                 return (
-                    <section>
+                    <section key={playlistsName}>
                         <h2>{playlistsName}</h2>
                         <div>
-                            {videos.map((video) => {
-                                //map para pegar cada video da lista
-                                return (
-                                    <a href={video.url}>
-                                        <img src={video.thumb} />
-                                        <span>{video.title}</span>
-                                    </a>
-                                );
-                            })}
+                            {videos
+                                .filter((video) => {
+                                    const titleNormalized =
+                                        video.title.toLowerCase();
+                                    const searchNormalized =
+                                        searchValue.toLowerCase();
+                                    return titleNormalized.includes(
+                                        searchNormalized
+                                    );
+                                })
+                                .map((video) => {
+                                    //map para pegar cada video da lista
+                                    return (
+                                        <a key={video.url} href={video.url}>
+                                            <img src={video.thumb} />
+                                            <span>{video.title}</span>
+                                        </a>
+                                    );
+                                })}
                         </div>
                     </section>
                 );

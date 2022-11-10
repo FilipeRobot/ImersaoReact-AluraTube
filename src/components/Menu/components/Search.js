@@ -34,18 +34,19 @@ const StyledSearch = styled.div`
     }
 `;
 
-export default function Search() {
-    const [valorDaBusca, setValorDaBusca] = React.useState("Frost");
-    console.log("Search", valorDaBusca);
+export default function Search({ valorDoFiltro, setValorDoFiltro }) {
+    // const [valorDaBusca, setValorDaBusca] = React.useState("teste");
+    // console.log("Search", valorDaBusca);
+    const valorDaBusca = valorDoFiltro
+    const setValorDaBusca = setValorDoFiltro
+
     return (
         <StyledSearch>
             <input
                 type="text"
-                onChange={() => {
-                    console.log("digitou algo");
-                }}
+                onChange={(e) => setValorDaBusca(e.target.value)}
+                value={valorDaBusca}
             />
-            {valorDaBusca}
             <button>🔎</button>
         </StyledSearch>
     );
