@@ -1,20 +1,14 @@
 import React from "react";
 import config from "../config.json";
 import styled from "styled-components";
-import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
 
 function HomePage() {
-    const estilosDaHomePage = {
-        //backgroundColor: "red"
-    };
-
     const [valorDoFiltro, setValorDoFiltro] = React.useState("");
 
     return (
         <>
-            <CSSReset />
             <div
                 style={{
                     display: "flex",
@@ -32,9 +26,7 @@ function HomePage() {
                 <TimeLine
                     searchValue={valorDoFiltro}
                     playlists={config.playlists}
-                >
-                    Conteúdo
-                </TimeLine>
+                />
             </div>
         </>
     );
@@ -43,6 +35,8 @@ function HomePage() {
 export default HomePage;
 
 const StyledHeader = styled.div`
+    background-color: ${({ theme }) => theme.backgroundLevel1};
+
     img {
         width: 80px;
         height: 80px;
@@ -55,13 +49,6 @@ const StyledHeader = styled.div`
         padding: 16px 32px;
         gap: 16px;
     }
-    .banner {
-        margin-top: 50px;
-        width: 100%;
-        height: 230px;
-        border-radius: 0;
-        object-fit: cover;
-    }
 `;
 const StyledBanner = styled.div`
     margin-top: 50px;
@@ -70,15 +57,10 @@ const StyledBanner = styled.div`
     /* background-image: url(${config.bg}); */
     height: 230px;
     background-size: cover;
-`
+`;
 function Header() {
     return (
         <StyledHeader>
-            {/* <img
-                className="banner"
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=fill&w=870&q=80"
-                alt="Banner"
-            /> */}
             <StyledBanner bg={config.bg} />
             <section className="user-info">
                 <img
